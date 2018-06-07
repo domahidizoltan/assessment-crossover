@@ -1,0 +1,38 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="crossover" id="1001122001_create_tables">
+        <createTable tableName="panel">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="pk_panel"/>
+            </column>
+            <column name="serial" type="VARCHAR(255)"/>
+            <column name="latitude" type="DOUBLE"/>
+            <column name="longitude" type="DOUBLE"/>
+            <column name="brand" type="VARCHAR(255)"/>
+        </createTable>
+        <createTable tableName="hourly_electricity">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="pk_hourly_electricity"/>
+            </column>
+            <column name="panel_id" type="BIGINT"/>
+            <column name="generated_electricity" type="BIGINT"/>
+            <column name="reading_at" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="java" id="1001122003">
+       <insert tableName="panel">
+         <column name="id">1</column>
+         <column name="serial">1234567890123456</column>
+         <column name="longitude">51.104394</column>
+         <column name="latitude">16.999671</column>
+         <column name="brand">tesla</column>
+         </insert>
+     </changeSet>
+     <changeSet author="java" id="1001122004">
+       <insert tableName="hourly_electricity">
+         <column name="panel_id">1</column>
+         <column name="generated_electricity">100</column>
+         <column name="reading_at">2018-01-31 09:00:00</column>
+         </insert>
+     </changeSet>
+</databaseChangeLog>
