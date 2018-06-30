@@ -15,11 +15,14 @@ import org.springframework.stereotype.Service;
  *
  */
 
-@Service
 public class HourlyElectricityServiceImpl implements HourlyElectricityService {
-  @Autowired
-  HourlyElectricityRepository hourlyElectricityRepository;
-  
+
+  private final HourlyElectricityRepository hourlyElectricityRepository;
+
+  public HourlyElectricityServiceImpl(final HourlyElectricityRepository hourlyElectricityRepository) {
+    this.hourlyElectricityRepository = hourlyElectricityRepository;
+  }
+
   public HourlyElectricity save(HourlyElectricity hourlyElectricity) {
     return hourlyElectricityRepository.save(hourlyElectricity);
   }
