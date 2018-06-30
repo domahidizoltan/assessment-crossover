@@ -63,17 +63,17 @@ public class HourlyElectricityServiceImplTest {
     }
 
     private HourlyElectricity makeAnyHourlyElectricity() {
-        HourlyElectricity data = new HourlyElectricity();
-        data.setPanel(makeAnyPanel());
-        data.setGeneratedElectricity(123L);
-        data.setReadingAt(LocalDateTime.now());
-        return data;
+        return HourlyElectricity.builder()
+            .panel(makeAnyPanel())
+            .generatedElectricity(123L)
+            .readingAt(LocalDateTime.now())
+            .build();
     }
 
     private Panel makeAnyPanel() {
-        Panel panel = new Panel();
-        panel.setId(ANY_PANEL_ID);
-        panel.setSerial("1234567890123456");
-        return panel;
+        return Panel.builder()
+            .id(ANY_PANEL_ID)
+            .serial("1234567890123456")
+            .build();
     }
 }

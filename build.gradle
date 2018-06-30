@@ -43,4 +43,8 @@ dependencies {
 	runtime('org.springframework.boot:spring-boot-devtools')
 	runtime('mysql:mysql-connector-java')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+
+	//don't forget to install the Lombok plugin and enable annotation processing
+	//when you run the application from your IDE https://projectlombok.org/
+	compileOnly 'org.projectlombok:lombok:1.18.0'
 }

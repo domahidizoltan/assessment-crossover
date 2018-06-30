@@ -139,20 +139,19 @@ public class PanelControllerTest {
   }
 
   private Panel makeAnyPanel() {
-    Panel panel = new Panel();
-    panel.setId(ANY_PANEL_ID);
-    panel.setSerial(ANY_SERIAL);
-    panel.setBrand("anyBrand");
-    panel.setLatitude(12.123456);
-    panel.setLongitude(23.234567);
-    return panel;
+    return Panel.builder()
+        .id(ANY_PANEL_ID)
+        .serial(ANY_SERIAL)
+        .brand("anyBrand")
+        .latitude(12.123456)
+        .longitude(23.234567)
+        .build();
   }
 
   private HourlyElectricity makeAnyHourlyElectricity() {
-    HourlyElectricity data = new HourlyElectricity();
-    data.setPanel(makeAnyPanel());
-    data.setGeneratedElectricity(123L);
-    data.setReadingAt(LocalDateTime.now());
-    return data;
+    return HourlyElectricity.builder()
+        .generatedElectricity(123L)
+        .readingAt(LocalDateTime.now())
+        .build();
   }
 }

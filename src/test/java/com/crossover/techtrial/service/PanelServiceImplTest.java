@@ -46,11 +46,11 @@ public class PanelServiceImplTest {
     }
 
     private Panel makeAnyPanel() {
-        Panel panel = new Panel();
-        panel.setSerial(ANY_SERIAL);
-        panel.setBrand("anyBrand");
-        panel.setLatitude(12.123456);
-        panel.setLongitude(23.234567);
-        return panel;
+       return Panel.builder()
+            .serial(ANY_SERIAL)
+            .brand("anyBrand")
+            .latitude(12.123456)
+            .longitude(23.234567)
+            .build();
     }
 }
