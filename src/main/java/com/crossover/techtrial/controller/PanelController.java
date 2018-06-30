@@ -27,12 +27,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PanelController {
 
-  @Autowired
-  PanelService panelService;
-  
-  @Autowired
-  HourlyElectricityService hourlyElectricityService;
-  
+  private PanelService panelService;
+  private HourlyElectricityService hourlyElectricityService;
+
+  public PanelController(final PanelService panelService, final HourlyElectricityService hourlyElectricityService) {
+    this.panelService = panelService;
+    this.hourlyElectricityService = hourlyElectricityService;
+  }
+
   /**
    * Register a Panel to System and start receiving the electricity statistics.
    * @param panel to register.
@@ -64,7 +66,7 @@ public class PanelController {
   
   @GetMapping(path = "/api/panels/{panel-serial}/hourly")
   public ResponseEntity<?> hourlyElectricity(
-      @PathVariable(value = "banel-serial") String panelSerial,
+      @PathVariable(value = "panel-serial") String panelSerial,
       @PageableDefault(size = 5,value = 0) Pageable pageable) {
     Panel panel = panelService.findBySerial(panelSerial);
     if (panel == null) {
