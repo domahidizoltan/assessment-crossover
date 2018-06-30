@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+
+    adminer:
+      image: adminer
+      container_name: adminer
+      restart: always
+      ports:
+        - 9000:8080
+
+    db:
+      image: mysql:8.0.3
+      container_name: db
+      restart: always
+      ports:
+        - 3306:3306
+      environment:
+        - MYSQL_DATABASE=crosssolar
+        - MYSQL_ROOT_PASSWORD=pwd
