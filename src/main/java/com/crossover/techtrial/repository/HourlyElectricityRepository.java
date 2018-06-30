@@ -6,6 +6,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RestResource;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 /**
  * HourlyElectricity Repository is for all operations for HourlyElectricity.
  * @author Crossover
@@ -13,5 +16,8 @@ import org.springframework.data.rest.core.annotation.RestResource;
 @RestResource(exported = false)
 public interface HourlyElectricityRepository 
     extends PagingAndSortingRepository<HourlyElectricity,Long> {
+
   Page<HourlyElectricity> findAllByPanelIdOrderByReadingAtDesc(Long panelId,Pageable pageable);
+
+  List<HourlyElectricity> findAllByPanelIdAndReadingAtBetweenOrderByReadingAtDesc(Long panelId, LocalDateTime startDate, LocalDateTime endDate);
 }

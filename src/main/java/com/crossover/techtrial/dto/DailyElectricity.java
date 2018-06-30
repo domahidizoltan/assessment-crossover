@@ -1,7 +1,6 @@
 package com.crossover.techtrial.dto;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -14,6 +13,8 @@ import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class DailyElectricity implements Serializable {
   
   private static final long serialVersionUID = 3605549122072628877L;

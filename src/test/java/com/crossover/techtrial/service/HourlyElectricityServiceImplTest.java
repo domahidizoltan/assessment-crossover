@@ -24,6 +24,8 @@ import static org.mockito.BDDMockito.given;
 public class HourlyElectricityServiceImplTest {
 
     private static final Long ANY_PANEL_ID = 42L;
+    private static final LocalDateTime ANY_CREATED_AT = LocalDateTime.parse("1970-01-01T00:00:00");
+    private static final LocalDateTime NOW = LocalDateTime.now();
 
     private HourlyElectricity anyHourlyElectricity;
 
@@ -62,6 +64,17 @@ public class HourlyElectricityServiceImplTest {
         assertEquals(expectedHourlyElectricityPage, actualHourlyElectricityPage);
     }
 
+    @Test
+    public void shouldGetHourlyElectricityByPanelIdBetweenDates() {
+        List<HourlyElectricity> expectedHourlyElectricities = Arrays.asList(makeAnyHourlyElectricity());
+        given(hourlyElectricityRepositoryMock.findAllByPanelIdAndReadingAtBetweenOrderByReadingAtDesc(ANY_PANEL_ID, ANY_CREATED_AT, NOW))
+            .willReturn(expectedHourlyElectricities);
+
+        List<HourlyElectricity> actualHourlyElectricities = underTest.getHourlyElectricityByPanelIdBetweenDates(ANY_PANEL_ID, ANY_CREATED_AT, NOW);
+
+        assertEquals(expectedHourlyElectricities, actualHourlyElectricities);
+    }
+
     private HourlyElectricity makeAnyHourlyElectricity() {
         return HourlyElectricity.builder()
             .panel(makeAnyPanel())
@@ -74,6 +87,7 @@ public class HourlyElectricityServiceImplTest {
         return Panel.builder()
             .id(ANY_PANEL_ID)
             .serial("1234567890123456")
+            .createdAt(ANY_CREATED_AT)
             .build();
     }
 }

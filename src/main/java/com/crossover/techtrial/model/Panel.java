@@ -1,11 +1,13 @@
 package com.crossover.techtrial.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * Panel class hold information related to a Solar panel.
@@ -40,5 +42,9 @@ public class Panel implements Serializable {
   @Nullable
   @EqualsAndHashCode.Include
   private String brand;
+
+  @Column(name = "created_at")
+  @JsonIgnore
+  private LocalDateTime createdAt;
 
 }

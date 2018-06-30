@@ -1,0 +1,119 @@
+{
+	"variables": [],
+	"info": {
+		"name": "CrossSolar",
+		"_postman_id": "09d9cf79-b846-be06-89e0-5f54d745202f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register-panel",
+			"request": {
+				"url": "http://localhost:8080/api/register",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"serial\": \"1122334455667788\",\n\t\"latitude\": 12.123456,\n\t\"longitude\": 23.234567,\n\t\"brand\": \"any-brand\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "save-hourly-electricity",
+			"request": {
+				"url": "http://localhost:8080/api/panels/1122334455667788/hourly",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"generatedElectricity\": 222,\n\t\"readingAt\": \"2018-06-27T18:43:00\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get-hourly-electricity",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/api/panels/1122334455667788/hourly?page=0&size=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"panels",
+						"1122334455667788",
+						"hourly"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "size",
+							"value": "3",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"generatedElectricity\": 222,\n\t\"readingAt\": \"2018-06-27T18:43:00\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get-daily-electricity",
+			"request": {
+				"url": "http://localhost:8080/api/panels/1122334455667788/daily",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"generatedElectricity\": 222,\n\t\"readingAt\": \"2018-06-27T18:43:00\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
